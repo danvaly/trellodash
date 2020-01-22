@@ -57,14 +57,14 @@ function onAuthorize() {
 
                 if (isValidBoard && boardNameFilter) {
                     isValidBoard = false;
-                    if (jQuery.inArray(board.name, boardNameFilter.split('|'))) {
+                    if (jQuery.inArray(board.name, boardNameFilter.split('|')) !== -1) {
                         isValidBoard = true;
                     }
                 }
 
                 if (isValidBoard && boardIdFilter) {
                     isValidBoard = false;
-                    if (jQuery.inArray(board.id, boardIdFilter.split('|'))) {
+                    if (jQuery.inArray(board.id, boardIdFilter.split('|')) !== -1) {
                         isValidBoard = true;
                     }
                 }
@@ -107,14 +107,14 @@ function onAuthorize() {
 
                             if (isValidList && listNameFilter) {
                                 isValidList = false;
-                                if (jQuery.inArray(list.name, listNameFilter.split('|'))) {
+                                if (jQuery.inArray(list.name, listNameFilter.split('|')) !== -1) {
                                     isValidList = true;
                                 }
                             }
 
                             if (isValidList && listIdFilter) {
                                 isValidList = false;
-                                if (jQuery.inArray(list.id, listIdFilter.split('|'))) {
+                                if (jQuery.inArray(list.id, listIdFilter.split('|')) !== -1) {
                                     isValidList = true;
                                 }
                             }
@@ -188,15 +188,15 @@ function renderCards(cards) {
 
         if (isValidCard && notListNameFilter) {
             isValidCard = false;
-            if (jQuery.inArray(card.name, notListNameFilter.split('|'))) {
+            if (jQuery.inArray(card.name, notListNameFilter.split('|')) === -1) {
                 isValidCard = true;
             }
         }
 
         if (isValidCard && labelFilter) {
             isValidCard = false;
-            for (i = 0; i < card.labels.length; i++) {
-                if (jQuery.inArray(card.labels[i].name, labelFilter.split('|'))) {
+            for (var i = 0; i < card.labels.length; i++) {
+                if (jQuery.inArray(card.labels[i].name, labelFilter.split('|')) !== -1) {
                     isValidCard = true;
                 }
             }
@@ -208,12 +208,9 @@ function renderCards(cards) {
 
             $("#board_" + card.idBoard).show();
 
-
             var $cardContainer = $('<a class="list-card" href=""></a>')
                 .attr({href: card.url, target: "trello", id: "card_" + card.id})
                 .appendTo("#boardcards_" + card.idBoard);
-
-            BoardSelector = "#boardcards_" + card.idBoard;
 
             var $card = $('<div class="list-card-details"></div>')
                 .appendTo($cardContainer);
@@ -222,16 +219,24 @@ function renderCards(cards) {
                 .addClass("card-labels")
                 .appendTo($card);
 
+            console.log(card.labels);
+            if (card.labels.length > 0) {
+                for (var i = 0; i < card.labels.length; i++) {
+                    var $cardLabelTpl = '<span class="card-label card-label-'+card.labels[i].color+' mod-card-front"><span class="label-text">'+card.labels[i].name+'</span></span>';
+                    $cardLabels.append($($cardLabelTpl));
+                }
+            }
+
             var $cardTitle = $("<span>")
                 .addClass('list-card-title')
                 .attr('dir', 'auto')
                 .text(card.name)
                 .appendTo($card);
 
-            var $cardList = $("<p>")
-                .addClass("list-card-position quiet")
-                .html("In <strong>" + listHash[card.idList].name + "</strong>")
-                .appendTo($cardLabels);
+            var $cardList = $("<div>")
+                .addClass("badges")
+                .html("<small>in <strong>" + listHash[card.idList].name + "</strong></small>")
+                .appendTo($card);
 
             var $cardMembers = $("<div>")
                 .addClass("list-card-members")
