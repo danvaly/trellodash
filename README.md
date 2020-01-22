@@ -1,6 +1,7 @@
 TrelloDash
 ==========
 Show all cards from different boards that match specific filters. 
+Application is based on TrelloWall
 
 Filters:
 --------
@@ -30,20 +31,20 @@ only load cards on a board with a specific name
 
 Sample:
 --------
-__URL:__ https://www.activeline.ro/trellowall/
+__URL:__ https://www.activeline.ro/trellodash/
 													
 * all cards from a specific organization  
-https://www.activeline.ro/trellowall/?board_organization=mycompany
+https://www.activeline.ro/trellodash/?board_organization=mycompany
 
 * all cards with a specific member  
-https://www.activeline.ro/trellowall/?card_members_username=sampleuser						
+https://www.activeline.ro/trellodash/?card_members_username=sampleuser						
 
 * all cards with a specific label  
-https://www.activeline.ro/trellowall/?card_labels_name=samplelabel
+https://www.activeline.ro/trellodash/?card_labels_name=samplelabel
 
 * all cards with a specific label and user  
-https://www.activeline.ro/trellowall/?card_labels_name=samplelabel&card_members_username=sampleuser	
+https://www.activeline.ro/trellodash/?card_labels_name=samplelabel&card_members_username=sampleuser	
 
 * all cards with a specific label from a specific organization  
-https://www.activeline.ro/trellowall/?card_labels_name=samplelabel&board_organization=mycompany
+https://www.activeline.ro/trellodash/?card_labels_name=samplelabel&board_organization=mycompany
 
