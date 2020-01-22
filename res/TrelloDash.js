@@ -11,20 +11,19 @@ $.urlParam = function(name){
 }
 
 
-var organizationFilter = $.urlParam('board_organization');
-var usernameFilter = $.urlParam('card_members_username');
-var labelFilter = $.urlParam('card_labels_name');
+var organizationFilter = $.urlParam('organization');
+var usernameFilter = $.urlParam('members');
+var labelFilter = $.urlParam('labels');
 
 var listIdFilter = $.urlParam('list_id');
-var listNameFilter = $.urlParam('list_name');
+var listNameFilter = $.urlParam('list');
 
-var notListNameFilter = $.urlParam('skip_card_name');
+var notListNameFilter = $.urlParam('skip_card');
 
 
 var boardIdFilter = $.urlParam('board_id');
-var boardNameFilter = $.urlParam('board_name');
+var boardNameFilter = $.urlParam('board');
 
-var minVoteFilter = $.urlParam('minVoteFilter');
 
 var renderedMembers = [];
 var boardHash = {};
@@ -203,12 +202,7 @@ function renderCards(cards) {
 			}
 		}
 
-		if (isValidCard && minVoteFilter) {
-			isValidCard = false;
-			if (card.badges.votes >= minVoteFilter) {
-				isValidCard = true;
-			}
-		}
+
 		if (isValidCard) {
 			boardIds.push(card.idBoard);
 

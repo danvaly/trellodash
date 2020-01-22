@@ -1,33 +1,36 @@
 <h1 id="trellodash">TrelloDash</h1>
 
-<p>Show all cards from different boards that match specific filters. </p>
+<p>Show all cards from different boards that match specific filters.
+    Application is based on TrelloWall</p>
 
 <h2 id="filters">Filters:</h2>
 
 <p>Those filters are set by url-parameters.  </p>
 
 <ul>
-    <li><p><strong>board_organization</strong> <br />
+    <li><p><strong>organization</strong> <br />
         only load cards on boards from a specific organization                    </p></li>
 
-    <li><p><strong>card<em>members</em>username</strong> <br />
+    <li><p><strong>members</strong>
         only load cards with a specific member (by username)                        </p></li>
 
-    <li><p><strong>card<em>labels</em>name</strong> <br />
+    <li><p><strong>labels</strong> <br />
         only load cards with a specific label (by name)</p></li>
 
     <li><p><strong>list_id</strong> <br />
         only load cards on a list with a specific id                    </p></li>
 
-    <li><p><strong>list_name</strong> <br />
+    <li><p><strong>list</strong> <br />
         only load cards on a list with a specific name                        </p></li>
 
     <li><p><strong>board_id</strong>
         only load cards on a board with a specific id    </p></li>
 
-    <li><p><strong>board_name</strong> <br />
+    <li><p><strong>board</strong> <br />
         only load cards on a board with a specific name</p></li>
 
+    <li><p><strong>skip_card</strong> <br />
+        skip cards (by name)</p></li>
 </ul>
 
 <h2 id="sample">Sample:</h2>
@@ -36,17 +39,17 @@
 
 <ul>
     <li><p>all cards from a specific organization <br />
-        https://www.activeline.ro/trellodash/?board_organization=mycompany</p></li>
+        https://www.activeline.ro/trellodash/?organization=mycompany</p></li>
 
     <li><p>all cards with a specific member <br />
-        https://www.activeline.ro/trellodash/?card<em>members</em>username=sampleuser                        </p></li>
+        https://www.activeline.ro/trellodash/?members=sampleuser                        </p></li>
 
     <li><p>all cards with a specific label <br />
-        https://www.activeline.ro/trellodash/?card<em>labels</em>name=samplelabel</p></li>
+        https://www.activeline.ro/trellodash/?labels=samplelabel</p></li>
 
     <li><p>all cards with a specific label and user <br />
-        https://www.activeline.ro/trellodash/?card<em>labels</em>name=samplelabel&amp;card<em>members</em>username=sampleuser    </p></li>
+        https://www.activeline.ro/trellodash/?labels=samplelabel&amp;members=sampleuser    </p></li>
 
     <li><p>all cards with a specific label from a specific organization <br />
-        https://www.activeline.ro/trellodash/?card<em>labels</em>name=samplelabel&amp;board_organization=mycompany</p></li>
+        https://www.activeline.ro/trellodash/?labels=samplelabel&amp;organization=mycompany</p></li>
 </ul>

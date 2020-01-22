@@ -7,44 +7,46 @@ Filters:
 --------
 Those filters are set by url-parameters.  
 													
-* __board_organization__  
+* __organization__  
 only load cards on boards from a specific organization					
 
-* __card_members_username__  
+* __members__ 
 only load cards with a specific member (by username)						
 
-* __card_labels_name__  
+* __labels__  
 only load cards with a specific label (by name)
 													
 * __list_id__  
 only load cards on a list with a specific id					
 
-* __list_name__  
+* __list__  
 only load cards on a list with a specific name						
 
 * __board_id__
 only load cards on a board with a specific id	
 
-* __board_name__  
+* __board__  
 only load cards on a board with a specific name
 
+* __skip_card__  
+skip cards (by name)
 
 Sample:
 --------
 __URL:__ https://www.activeline.ro/trellodash/
 													
 * all cards from a specific organization  
-https://www.activeline.ro/trellodash/?board_organization=mycompany
+https://www.activeline.ro/trellodash/?organization=mycompany
 
 * all cards with a specific member  
-https://www.activeline.ro/trellodash/?card_members_username=sampleuser						
+https://www.activeline.ro/trellodash/?members=sampleuser						
 
 * all cards with a specific label  
-https://www.activeline.ro/trellodash/?card_labels_name=samplelabel
+https://www.activeline.ro/trellodash/?labels=samplelabel
 
 * all cards with a specific label and user  
-https://www.activeline.ro/trellodash/?card_labels_name=samplelabel&card_members_username=sampleuser	
+https://www.activeline.ro/trellodash/?labels=samplelabel&members=sampleuser	
 
 * all cards with a specific label from a specific organization  
-https://www.activeline.ro/trellodash/?card_labels_name=samplelabel&board_organization=mycompany
+https://www.activeline.ro/trellodash/?labels=samplelabel&organization=mycompany
 
