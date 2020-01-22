@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TrelloDash</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://api.trello.com/1/client.js?key=3d6249351dedc2191faf3255fc4e53fa"></script>
+    <script src="res/TrelloDash.js"></script>
+
+    <!-- use the original trello css -->
+    <link rel="stylesheet" href="https://a.trellocdn.com/prgb/dist/br/core.0c68b797cbb93e66f607.css">
+</head>
+<body>
+
+<div id="loggedout">
+    <a id="connectLink" href="#">Connect To Trello</a>
+</div>
+
+<div id="surface">
+    <div id="header" style="color: #fff">
+        Logged in as <span id="fullName"></span>
+        <a id="disconnect" style="float: right; font-weight: bold;color:##026AA7;background: #fff; border-radius: 5px; padding: 5px 10px; text-decoration: none" href="#">Log Out</a>
+        <a target="_blank" style="float: right; font-weight: bold;color:#026AA7;background: #fff; border-radius: 5px; padding: 5px 10px; text-decoration: none;margin-right: 10px;" href="help.html">Help</a>
+
+    </div>
+    <div id="content" tabindex="-1">
+        <div class="board-wrapper" style="padding-top:10px;">
+            <div class="board-main-content">
+                <div class="board-canvas">
+                    <div id="board"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<h1 id="trellowall">TrelloDash</h1>
+
+<p>Show all cards from different boards that match specific filters. </p>
+
+<h2 id="filters">Filters:</h2>
+
+<p>Those filters are set by url-parameters.  </p>
+
+<ul>
+    <li><p><strong>board_organization</strong> <br />
+        only load cards on boards from a specific organization                    </p></li>
+
+    <li><p><strong>card<em>members</em>username</strong> <br />
+        only load cards with a specific member (by username)                        </p></li>
+
+    <li><p><strong>card<em>labels</em>name</strong> <br />
+        only load cards with a specific label (by name)</p></li>
+
+    <li><p><strong>list_id</strong> <br />
+        only load cards on a list with a specific id                    </p></li>
+
+    <li><p><strong>list_name</strong> <br />
+        only load cards on a list with a specific name                        </p></li>
+
+    <li><p><strong>board_id</strong>
+        only load cards on a board with a specific id    </p></li>
+
+    <li><p><strong>board_name</strong> <br />
+        only load cards on a board with a specific name</p></li>
+
+</ul>
+
+<h2 id="sample">Sample:</h2>
+
+<p><strong>URL:</strong> https://www.activeline.ro/trellowall/</p>
+
+<ul>
+    <li><p>all cards from a specific organization <br />
+        https://www.activeline.ro/trellowall/?board_organization=mycompany</p></li>
+
+    <li><p>all cards with a specific member <br />
+        https://www.activeline.ro/trellowall/?card<em>members</em>username=sampleuser                        </p></li>
+
+    <li><p>all cards with a specific label <br />
+        https://www.activeline.ro/trellowall/?card<em>labels</em>name=samplelabel</p></li>
+
+    <li><p>all cards with a specific label and user <br />
+        https://www.activeline.ro/trellowall/?card<em>labels</em>name=samplelabel&amp;card<em>members</em>username=sampleuser    </p></li>
+
+    <li><p>all cards with a specific label from a specific organization <br />
+        https://www.activeline.ro/trellowall/?card<em>labels</em>name=samplelabel&amp;board_organization=mycompany</p></li>
+</ul>
