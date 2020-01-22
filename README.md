@@ -31,18 +31,20 @@ only load cards on a board with a specific name
 * __skip_card__  
 skip cards (by name)
 
+To use multiple filters you can separate them by ``` "|" ```
+
 Sample:
 --------
 __URL:__ https://www.activeline.ro/trellodash/
 													
 * all cards from a specific organization  
-https://www.activeline.ro/trellodash/?organization=mycompany
+https://www.activeline.ro/trellodash/?organization=mycompany|mycompany2
 
 * all cards with a specific member  
 https://www.activeline.ro/trellodash/?members=sampleuser						
 
 * all cards with a specific label  
-https://www.activeline.ro/trellodash/?labels=samplelabel
+https://www.activeline.ro/trellodash/?labels=samplelabel|sample label2
 
 * all cards with a specific label and user  
 https://www.activeline.ro/trellodash/?labels=samplelabel&members=sampleuser	
