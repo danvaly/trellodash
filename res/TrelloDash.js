@@ -23,6 +23,7 @@ var notListNameFilter = $.urlParam('skip_card');
 
 var boardIdFilter = $.urlParam('board_id');
 var boardNameFilter = $.urlParam('board');
+var notBoardNameFilter = $.urlParam('skip_board');
 
 
 var renderedMembers = [];
@@ -62,6 +63,12 @@ function onAuthorize() {
                     }
                 }
 
+                if (isValidBoard && notBoardNameFilter) {
+                    if (jQuery.inArray(board.name, notBoardNameFilter.split('|')) !== -1) {
+                        isValidBoard = false;
+                    }
+                }
+
                 if (isValidBoard && boardIdFilter) {
                     isValidBoard = false;
                     if (jQuery.inArray(board.id, boardIdFilter.split('|')) !== -1) {
@@ -69,12 +76,17 @@ function onAuthorize() {
                     }
                 }
 
+                var hiddenBoards = JSON.parse(localStorage.getItem('hiddenBoards')) || {};
+                if (hiddenBoards[board.id]!==undefined){
+                    isValidBoard = false;
+                }
+
                 if (isValidBoard) {
                     boardHash[board.id] = board;
 
                     var boardTpl = '<div class="list-wrapper">' +
                         '<div class="list">\n' +
-                        '<div class="list-header"><h2 class="list-header-name" dir="auto"></h2></div>\n' +
+                        '<div class="list-header"><h2 class="list-header-name" dir="auto"> <a data-board-name="'+board.name+'" data-board="' + board.id + '" href="#" class="boardHide"><span class="icon-sm icon-subscribe"></span></a></h2> </div>\n' +
                         '</div>' +
                         '</div>';
 
@@ -126,8 +138,40 @@ function onAuthorize() {
                         });
                     });
                 }
+
             });
 
+            $('.boardHide').on('click', function (event) {
+                event.preventDefault();
+                var boardId = $(this).data('board');
+                var boardName = $(this).data('board-name');
+                $('#board_'+boardId).hide();
+
+                var hiddenBoards = JSON.parse(localStorage.getItem('hiddenBoards')) || {};
+                hiddenBoards[boardId] = boardName;
+                console.log(hiddenBoards);
+                localStorage.setItem('hiddenBoards', JSON.stringify(hiddenBoards));
+
+                showHiddenBoards();
+            });
+
+            $('body').on('click','.unhideBoard',function(event){
+                event.preventDefault();
+                var boardId = $(this).data('board');
+                $('#board_'+boardId).show();
+                var hiddenBoards = JSON.parse(localStorage.getItem('hiddenBoards')) || {};
+                var keys =  Object.keys(hiddenBoards);
+                var newBoards = {};
+                for(var i = 0;i<keys.length; i++){
+                    if (keys[i]!== boardId){
+                        newBoards[keys[i]] = hiddenBoards[keys[i]];
+                    }
+                 }
+                localStorage.setItem('hiddenBoards', JSON.stringify(newBoards));
+                window.location.reload();
+            });
+
+            showHiddenBoards();
             console.log("loading cards...");
 
 
@@ -158,6 +202,18 @@ function onAuthorize() {
         });
     });
 };
+
+function showHiddenBoards() {
+    var hiddenBoards = JSON.parse(localStorage.getItem('hiddenBoards')) || {};
+    var boardsLinks = '';
+
+    var keys =  Object.keys(hiddenBoards);
+    for(var i = 0;i<keys.length; i++){
+        console.log(hiddenBoards[keys[i]]);
+        boardsLinks+='<a style="color:#fff;font-weight: bold; padding-right: 10px;text-decoration: none;" href="#" data-board="'+keys[i]+'" class="unhideBoard"><span style="color:#fff;" class="icon-sm icon-subscribe"></span> '+hiddenBoards[keys[i]]+'</a>';
+    }
+    $('.hiddenBoards').html(boardsLinks);
+}
 
 function renderCards(cards) {
     var $loading = $("#loading");
@@ -215,14 +271,16 @@ function renderCards(cards) {
             var $card = $('<div class="list-card-details"></div>')
                 .appendTo($cardContainer);
 
+
+            // <div class="list-card-cover js-card-cover" style="background-color: rgb(248, 247, 245); background-image: url(&quot;https://trello-attachments.s3.amazonaws.com/5de69e1ee8de4986c409cfa2/300x156/28a56fa574d9e876650057eee8acd207/image.png&quot;); height: 127.4px; background-size: cover;"></div>
+
             var $cardLabels = $("<div>")
                 .addClass("card-labels")
                 .appendTo($card);
 
-            console.log(card.labels);
             if (card.labels.length > 0) {
                 for (var i = 0; i < card.labels.length; i++) {
-                    var $cardLabelTpl = '<span class="card-label card-label-'+card.labels[i].color+' mod-card-front"><span class="label-text">'+card.labels[i].name+'</span></span>';
+                    var $cardLabelTpl = '<span class="card-label card-label-' + card.labels[i].color + ' mod-card-front"><span class="label-text">' + card.labels[i].name + '</span></span>';
                     $cardLabels.append($($cardLabelTpl));
                 }
             }
