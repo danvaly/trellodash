@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TrelloDash - Multiboard cards management tool</title>
+    <!-- use the original trello css -->
+    <link rel="stylesheet" href="https://a.trellocdn.com/prgb/dist/br/core.0c68b797cbb93e66f607.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+
+<div id="loggedout">
+    <div>
+        <div style="text-align:center; padding:30px"><img
+                src="https://d2k1ftgv7pobq7.cloudfront.net/images/maintenance/SleepyTaco.png" alt="Sleepy Taco"
+                title="Sleepy Taco"/></div>
+        <h1>Oh no! 403!</h1>
+        <p>You need to login first to use the application</p>
+        <a id="connectLink" href="javascript:void(0)">Connect to Trello</a>
+    </div>
+</div>
+
+<div id="surface">
+    <div id="header" style="color: #fff">
+        Logged in as <span id="fullName"></span>
+        <a id="disconnect"
+           style="float: right; font-weight: bold;color:#026AA7;background: #fff; border-radius: 5px; padding: 5px 10px; text-decoration: none"
+           href="#">Log Out</a>
+        <a target="_blank"
+           style="float: right; font-weight: bold;color:#026AA7;background: #fff; border-radius: 5px; padding: 5px 10px; text-decoration: none;margin-right: 10px;"
+           href="help.html">Help</a>
+        <div class="hiddenBoards" style="float: right; margin-right: 10px;color:#fff;"></div>
+    </div>
+    <div id="content" tabindex="-1">
+        <div class="board-wrapper body-card-label-text" style="padding-top:10px;">
+            <div class="board-main-content">
+                <div class="board-canvas">
+                    <div id="board"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://api.trello.com/1/client.js?key=3d6249351dedc2191faf3255fc4e53fa"></script>
+<script src="assets/js/all.js"></script>
+</body>
+</html>

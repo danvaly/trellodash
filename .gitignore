@@ -5,6 +5,10 @@
 
 .idea
 .idea/*
+dist
+dist/*
+node_modules
+node_modules/*
 
 # User-specific stuff
 .idea/**/workspace.xml
